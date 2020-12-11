@@ -1,4 +1,9 @@
 class ArticlesController < ApplicationController
+    
+    def show
+      @article = Article.find params[:id]
+    end
+    
     def new
     end
 
@@ -6,7 +11,7 @@ class ArticlesController < ApplicationController
       @article = Article.new(article_params)
       if @article.valid?
         @article.save
-        redurect_to @article
+        redirect_to @article
       else
         render action: 'new'
       end
