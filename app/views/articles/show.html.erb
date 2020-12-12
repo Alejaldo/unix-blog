@@ -1,7 +1,17 @@
 <h1><%= @article.title %></h1>
 
 <p><%= @article.text %></p>
-
+<br />
+<br />
+<p>
+  <% @article.comments.each do |como| %>
+  <p><%= como.author %> | <%= como.created_at %></p>
+  <p><%= como.body %></p>
+  <hr />
+  <% end %>  
+</p>
+<br />
+<br />
 <p>
 <%= form_for([@article, @article.comments.build]) do |f| %>
   <p>
