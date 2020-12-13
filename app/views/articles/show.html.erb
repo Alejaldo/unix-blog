@@ -3,15 +3,19 @@
 <p><%= @article.text %></p>
 <br />
 <br />
+<h2>Comments</h2>
 <p>
   <% @article.comments.each do |como| %>
-  <p><%= como.author %> | <%= como.created_at %></p>
-  <p><%= como.body %></p>
+  <p><i><%= como.author %> said at <%= como.created_at %></i>
+  <br />
+  <%= como.body %>
+  </p>
   <hr />
   <% end %>  
 </p>
 <br />
 <br />
+<h2>Add comment</h2>
 <p>
 <%= form_for([@article, @article.comments.build]) do |f| %>
   <p>
