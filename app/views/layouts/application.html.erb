@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="eb">
+<html lang="en">
   <head>
     <title>Blog</title>
     <%= csrf_meta_tags %>
@@ -19,21 +19,58 @@
 
     <div class="container-fluid">
 
+      <!-- Static navbar -->
+
+      <nav class="navbar navbar-default" role="navigation">
+
+          <div class="navbar-header">
+
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+
+            </button>
+            
+            <a class="navbar-brand" href="/">Block Zaebock</a>
+
+          </div> 
+
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="/articles">List of articles</a></li>
+            </ul>
+			    </div>          
+     
+      </nav>
+
       <% if user_signed_in? %>
-
-        Hello <%= current_user.username%> epta! | <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
-
+      Hello <%= current_user.username%> epta! | <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
       <% else %>
-
-        <%= link_to 'Sign in', new_user_session_path %> pidoraso!
-
+      <%= link_to 'Sign in', new_user_session_path %> pidoraso!
       <% end %>
 
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <% unless flash[:notice].blank? %>
+	      <div class="alert alert-info">
+		      <%= flash[:notice] %>
+	      </div>
+	    <% end %>
 
-      <%= yield %>
+      <% unless flash[:alert].blank? %>
+        <div class="alert alert-danger">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+
+      <div class="container">
+        <%= yield %>
+      </div>
 
     </div>
+
   </body>
+
 </html>
