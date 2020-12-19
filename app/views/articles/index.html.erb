@@ -3,9 +3,13 @@
   <p><%= article.text %></p>
   <p>
     <%= link_to 'Show', article_path(article) %> |
-    <%= link_to 'Edit', edit_article_path(article) %> |
-    <%= link_to 'Delete', article_path(article), 
-    method: :delete, data: { confirm: "Are you ok epta?" } %>
+    <% if user_signed_in? %>
+
+      <%= link_to 'Edit', edit_article_path(article) %> |
+      <%= link_to 'Delete', article_path(article), 
+      method: :delete, data: { confirm: "Are you ok epta?" } %>
+      
+    <% end %>
   </p>
   <hr />
 <% end %>  

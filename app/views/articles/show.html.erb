@@ -1,9 +1,17 @@
 <h1><%= @article.title %></h1>
 
-<p><%= @article.text %></p>
+<p>
+  <%= @article.text %>
+  <br />
+  <br />
+  <hr />
+</p>
+
 <br />
 <br />
+
 <h2>Comments</h2>
+
 <p>
   <% @article.comments.each do |como| %>
   <p><i><%= como.author %> said at <%= como.created_at %></i>
@@ -13,21 +21,26 @@
   <hr />
   <% end %>  
 </p>
+
 <br />
 <br />
-<h2>Add comment</h2>
-<p>
-<%= form_for([@article, @article.comments.build]) do |f| %>
-  <p>  
-    <%= f.label :author %><br />
-    <%= f.text_field :author %>
-  </p>
+
+<% if user_signed_in? %>
+
+  <h2>Add comment</h2>
+
   <p>
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
+  <%= form_for([@article, @article.comments.build]) do |f| %>
+    <p>  
+      <%= f.text_area :body, class: "form-control", rows: "4", style: "width: 300px" %>
+    </p>
+    <p>
+      <%= f.submit"Add", class: "btn btn-success" %>
+    </p>
+  <% end %>
   </p>
-  <p>
-    <%= f.submit %>
-  </p>
+ 
+<% else %>
+	<i>Please <%= link_to "sign in", new_user_session_path %> or <%= link_to "register", new_user_registration_path %> to leave comments.</i>
 <% end %>
-</p>
+<hr/> 
