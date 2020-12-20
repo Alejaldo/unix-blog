@@ -4,7 +4,7 @@
   <%= @article.text %>
   <br />
   <br />
-  <%= @article.author %>
+  <%= @article.user.username %>
   <hr />
 </p>
 
@@ -15,7 +15,7 @@
 
 <p>
   <% @article.comments.each do |como| %>
-  <p><i><%= como.author %> said at <%= como.created_at %></i>
+  <p><i><%= como.user.username %> said at <%= como.created_at %></i>
   <br />
   <%= como.body %>
   </p>
