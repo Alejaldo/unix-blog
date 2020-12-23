@@ -72,15 +72,43 @@ end
 
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
+=begin
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
+=end
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+  config.before(:each, js: true) do
+    DatabaseCleaner.strategy = :transaction
+  end
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+
 end
 
 def sign_up
   visit new_user_registration_path
 
-  fill_in :user_email, :with => 'user@example.com'
-  fill_in :user_username, :with => 'miho'
-  fill_in :user_password, :with => '12345678'
-  fill_in :user_password_confirmation, :with => '12345678'
+  fill_in :user_email, :with => 'trump@example.com'
+  fill_in :user_username, :with => 'trump'
+  fill_in :user_password, :with => '123456789'
+  fill_in :user_password_confirmation, :with => '123456789'
 
   click_button 'Sign up'
 end
