@@ -38,3 +38,6 @@ en:
   articles:
     new: "New article epta!"
     submit_button: "Save Article"
+
+  comments:
+    add: "Add comment"
