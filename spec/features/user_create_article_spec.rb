@@ -7,7 +7,7 @@ feature "Article Creation" do
 
   scenario "allows user to visit new article page" do
     visit new_article_path
-    expect(page).to have_content 'New article'
+    expect(page).to have_content I18n.t('articles.new')
   end
 
   scenario "allows user to create new article" do
@@ -16,7 +16,7 @@ feature "Article Creation" do
     fill_in :article_title, :with => "Test-Article-Title"
     fill_in :article_text, :with => "Content for new article"
 
-    click_button I18n.t('articles.create')
+    click_button I18n.t('articles.submit_button')
 
     expect(page).to have_content 'Test-Article-Title'
   end

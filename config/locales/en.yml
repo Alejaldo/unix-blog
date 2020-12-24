@@ -34,3 +34,7 @@ en:
 
   contacts:
     contact_us: "Contact us!"
+
+  articles:
+    new: "New article epta!"
+    submit_button: "Save Article"

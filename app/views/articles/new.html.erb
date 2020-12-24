@@ -1,4 +1,4 @@
-<h1>New article</h1>
+<h1><%= t('articles.new') %></h1>
 
 <%= form_for :article, url: articles_path do |f| %>
     <p>
@@ -10,6 +10,6 @@
         <%= f.text_area :text, class: "form-control", rows: "6", style: "width: 400px" %>
     </p>
     <p>
-        <%= f.submit"Save Article", class: "btn btn-success" %>
+        <%= f.submit t('articles.submit_button'), class: "btn btn-success" %>
     </p>
 <% end %>
