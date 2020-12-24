@@ -37,7 +37,8 @@ en:
 
   articles:
     new: "New article epta!"
-    submit_button: "Save Article"
+    submit_button: "Create Article"
+    save_changes: "Save changes"
 
   comments:
     add: "Add comment"
